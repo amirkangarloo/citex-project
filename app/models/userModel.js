@@ -9,7 +9,9 @@ const userSchema = new mongoos.Schema({
     },
     age: {
         type: Number,
-        required: true
+        required: true,
+        max: 80,
+        min: 12
     },
     mobile: {
         type: String,
