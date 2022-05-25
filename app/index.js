@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 const connectDB = require('./db/connection')
 const router = require('./routers')
+const errorHandlerMiddleware = require('./middleware/errorHandler')
+const notFound = require('./middleware/notFound')
 
 
 // middleware
@@ -11,6 +13,12 @@ app.use(express.json())
 
 // router
 router(app)
+
+// not found error
+app.use(notFound)
+
+// error handlers
+app.use(errorHandlerMiddleware)
 
 
 module.exports = async (port) => {
