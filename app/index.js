@@ -3,9 +3,14 @@
 const express = require('express')
 const app = express()
 const connectDB = require('./db/connection')
+const router = require('./routers')
+
 
 // middleware
 app.use(express.json())
+
+// router
+router(app)
 
 
 module.exports = async (port) => {
