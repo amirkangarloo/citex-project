@@ -31,7 +31,24 @@ const userUpdateData = async (req, res, next) => {
 }
 
 const userDeleteData = async (req, res, next) => {
-    res.status(200).send('user delete data ok')
+    try {
+        const {userId} = req.params
+        const user = await userModel.findByIdAndDelete(userId)
+
+        // check user exist
+        if (!user) {
+            throw new CustomAPIError('User does not exist', 404)
+        }
+
+        // send data to the client
+        res.status(200).send({
+            message: `User by mobile number: ${user.mobile}  was deleted`
+        })
+
+
+    } catch (error) {
+        next(error)
+    }
 }
 
 
