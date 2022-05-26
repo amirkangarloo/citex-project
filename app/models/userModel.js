@@ -17,6 +17,7 @@ const userSchema = new mongoos.Schema({
         type: String,
         required: true,
         unique: true,
+        index: true,
         match: /^09[0-9]{9}$/
     },
     password: {
