@@ -3,7 +3,7 @@
 const jwt = require('jsonwebtoken')
 
 const sing = (data) => {
-    return jwt.sign(data, process.env.APP_SECRET)
+    return jwt.sign(data, process.env.APP_SECRET, { expiresIn: '7d' })
 }
 
 const verify = (token) => {

@@ -47,6 +47,9 @@ const userUpdateData = async (req, res, next) => {
             updateData.password = hashService.hashPassword(req.body.password)
         }
 
+        // set time now on updated_at
+        updateData.updated_at = Date.now()
+        
         // update user by upadate data
         const user = await userModel.findByIdAndUpdate(userId, updateData)
 
@@ -57,7 +60,7 @@ const userUpdateData = async (req, res, next) => {
 
         // send data to the client
         res.status(200).send({
-            message: `User by mobile number: ${user.mobile}  was updated`
+            message: `User by ID: ${user._id}  was updated`
         })
 
 
@@ -80,7 +83,7 @@ const userDeleteData = async (req, res, next) => {
 
         // send data to the client
         res.status(200).send({
-            message: `User by mobile number: ${user.mobile}  was deleted`
+            message: `User by ID: ${user._id}  was deleted`
         })
 
 
