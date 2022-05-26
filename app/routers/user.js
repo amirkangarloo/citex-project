@@ -8,11 +8,12 @@ const {
     userDeleteData
 } = require('../controllers/userController')
 const methodNotAllowed = require('../middleware/methodNotAllowed')
+const authMiddleware = require('../middleware/auth')
 
 
-router.get('/:userId', userFetchData)
-router.patch('/:userId', userUpdateData)
-router.delete('/:userId', userDeleteData)
+router.get('/:userId', authMiddleware, userFetchData)
+router.patch('/:userId', authMiddleware, userUpdateData)
+router.delete('/:userId', authMiddleware, userDeleteData)
 
 
 // Method Not Allowed
